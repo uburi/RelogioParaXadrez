@@ -1,0 +1,56 @@
+package br.ucsal;
+
+public class Relogio {
+	
+    private int tempoMaximo;
+    private ContadorTempo jogador1;
+    private ContadorTempo jogador2;
+    private Thread threadJogador1;
+    private Thread threadJogador2;
+    
+    public Relogio(int tempoMaximo) {
+        this.tempoMaximo = tempoMaximo;
+        this.tempoRestanteJogador1 = tempoMaximo;
+        this.tempoRestanteJogador2 = tempoMaximo;
+        this.pausado = true;
+    }
+    
+    public void decrementaTempoJogador1(int segundos) {
+        tempoRestanteJogador1 -= segundos;
+        if (tempoRestanteJogador1 < 0) {
+            tempoRestanteJogador1 = 0;
+        }
+    }
+    
+    public void decrementaTempoJogador2(int segundos) {
+        tempoRestanteJogador2 -= segundos;
+        if (tempoRestanteJogador2 < 0) {
+            tempoRestanteJogador2 = 0;
+        }
+    }
+    
+    public int getTempoMaximo() {
+        return tempoMaximo;
+    }
+    
+    public int getTempoRestanteJogador1() {
+        return tempoRestanteJogador1;
+    }
+    
+    public int getTempoRestanteJogador2() {
+        return tempoRestanteJogador2;
+    }
+    public void iniciarTempo() {
+        this.pausado = false;
+    }
+    
+    public void pausarTempo() {
+        this.pausado = true;
+    }
+    
+    public void reiniciarTempo() {
+        this.tempoRestanteJogador1 = tempoMaximo;
+        this.tempoRestanteJogador2 = tempoMaximo;
+    }
+    
+}

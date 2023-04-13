@@ -1,0 +1,46 @@
+package br.ucsal;
+
+public class ContadorTempo implements Runnable {
+    private int tempoMaximo;
+    private int tempoRestante;
+    private boolean pausado;
+    
+    public ContadorTempo(int tempoMaximo) {
+        this.tempoMaximo = tempoMaximo;
+        this.tempoRestante = tempoMaximo;
+        this.pausado = true;
+    }
+    
+    public void iniciarTempo() {
+        this.pausado = false;
+    }
+    
+    public void pausarTempo() {
+        this.pausado = true;
+    }
+    
+    public void reiniciarTempo() {
+        this.tempoRestante = tempoMaximo;
+    }
+    
+    public int getTempoRestante() {
+        return tempoRestante;
+    }
+    
+    public boolean isPausado() {
+        return pausado;
+    }
+    
+    public void run() {
+        while (tempoRestante > 0) {
+            if (!pausado) {
+                tempoRestante--;
+            }
+            try {
+                Thread.sleep(1000); // espera 1 segundo
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+}  
