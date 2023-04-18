@@ -16,6 +16,7 @@ public class ContadorTempo implements Runnable {
     
     public void iniciarTempo() {
         this.pausado = false;
+
     }
     
     public void pausarTempo() {
@@ -38,12 +39,15 @@ public class ContadorTempo implements Runnable {
         while (tempoRestante > 0) {
             if (!pausado) {
                 tempoRestante--;
+                try {
+                    Thread.sleep(1000); // espera 1 segundo
+                } 
+                catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
-            try {
-                Thread.sleep(1000); // espera 1 segundo
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+           
         }
     }
+	
 }  
