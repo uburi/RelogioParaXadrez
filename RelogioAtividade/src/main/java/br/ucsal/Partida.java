@@ -10,6 +10,8 @@ public class Partida {
     private LocalDateTime horaInicio;
     private LocalDateTime horaFim;
     private boolean partidaEncerrada;
+    private boolean vezJogador1 = true;
+    private Jogador atual;
 
 	public Partida(Jogador jogador1, Jogador jogador2, Relogio relogio) {
 		this.jogador1 = jogador1;
@@ -38,18 +40,11 @@ public class Partida {
 		return numeroJogadas;
 	}
 	public void iniciarPartida() {
-        relogio.iniciarTempo();
+        relogio.iniciarTempoJogador1();
         horaInicio = LocalDateTime.now();
         partidaEncerrada = false;
     }
-    
-    public void realizarJogada() {
-        // lógica para realizar uma jogada
-        numeroJogadas++;
-        if (relogio.getTempoRestanteJogador1() <= 0 || relogio.getTempoRestanteJogador2() <= 0) {
-            encerrarPartida();
-        }
-    }
+ 
     
     public void encerrarPartida() {
         relogio.pausarTempo();

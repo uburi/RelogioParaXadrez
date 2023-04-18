@@ -10,6 +10,9 @@ public class ContadorTempo implements Runnable {
         this.tempoRestante = tempoMaximo;
         this.pausado = true;
     }
+    public void setPausado(boolean arg) {
+    	this.pausado = arg;
+    }
     
     public void iniciarTempo() {
         this.pausado = false;

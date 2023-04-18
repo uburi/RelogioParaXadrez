@@ -1,0 +1,55 @@
+package br.ucsal;
+
+import java.util.Scanner;
+
+public class TestaRelogio {
+
+	public static void main(String[] args) {
+        @SuppressWarnings("resource")
+		Scanner sc = new Scanner(System.in);
+        System.out.println("Bem-vindo ao jogo de xadrez!");
+
+        // Criação dos jogadores
+        Jogador jogador1 = new Jogador("João", 'A');
+        Jogador jogador2 = new Jogador("Maria", 'V');
+
+        // Criação do relógio
+        Relogio relogio = new Relogio(300);
+
+        // Criação da partida
+        Partida partida = new Partida(jogador1, jogador2, relogio);
+
+        // Início da partida
+        partida.iniciarPartida();
+
+        // Loop para permitir que os jogadores façam suas jogadas
+        while (!partida.isPartidaEncerrada()) {
+        	boolean parar = false;
+            System.out.println("Vez do jogador " + partida.getJogadorAtual(parar).getNome() + ".");
+            System.out.println("Digite 'jogar' para fazer uma jogada ou 'parar' para encerrar seu tempo.");
+
+            String comando = sc.nextLine();
+            if (comando.equals("jogar")) {
+                partida.realizarJogada();
+                parar = false;
+            } else if (comando.equals("parar")) {
+                relogio.pausarTempo();
+                parar = true;
+                
+            } else {
+                System.out.println("Comando inválido.");
+            }
+        }
+
+        // Exibição das informações da partida
+        System.out.println("A partida terminou!");
+        System.out.println("Número de jogadas: " + partida.getNumeroJogadas());
+        System.out.println("Hora de início: " + partida.getHoraInicio());
+        System.out.println("Hora de fim: " + partida.getHoraFim());
+        System.out.println("Tempo gasto por " + jogador1.getNome() + ": " + (relogio.getTempoMaximo() - relogio.getTempoRestanteJogador1()) + " segundos.");
+        System.out.println("Tempo gasto por " + jogador2.getNome() + ": " + (relogio.getTempoMaximo() - relogio.getTempoRestanteJogador2()) + " segundos.");
+    }
+
+	
+
+}
