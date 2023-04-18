@@ -18,6 +18,7 @@ public class Relogio {
     
     public void iniciarTempoJogador1() {
         jogador1.iniciarTempo();
+        threadJogador1.start();
     }
     public void iniciarTempoJogador2() {
         jogador2.iniciarTempo();

@@ -20,14 +20,11 @@ public class Jogador {
     public char getCor() {
         return cor;
     }
-    public void realizarJogada(Relogio relogio1, Partida partida1) {
-        this.relogio = relogio1;
-        this.partida = partida1;
+    public void realizarJogada(Relogio relogio) {
+        numeroJogadas = getNumeroJogadas() + 1;
         if (relogio.getTempoRestanteJogador1() <= 0 || relogio.getTempoRestanteJogador2() <= 0) {
             partida.encerrarPartida();
         }
-        numeroJogadas = getNumeroJogadas() + 1;
-        partida.setNumeroJogadas(numeroJogadas);
     }
 
 	public int getNumeroJogadas() {

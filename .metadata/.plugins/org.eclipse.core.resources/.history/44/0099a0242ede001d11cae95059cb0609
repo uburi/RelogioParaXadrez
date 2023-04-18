@@ -27,7 +27,7 @@ public class Jogador {
             partida.encerrarPartida();
         }
         numeroJogadas = getNumeroJogadas() + 1;
-        partida.setNumeroJogadas(numeroJogadas);
+
     }
 
 	public int getNumeroJogadas() {

@@ -57,11 +57,7 @@ public class Partida {
     }
     
     
-    public void setNumeroJogadas(int numeroJogadas) {
-		this.numeroJogadas = numeroJogadas;
-	}
-
-	public LocalDateTime getHoraInicio() {
+    public LocalDateTime getHoraInicio() {
         return horaInicio;
     }
     

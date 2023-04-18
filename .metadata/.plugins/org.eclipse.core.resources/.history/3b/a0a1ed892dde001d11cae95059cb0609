@@ -25,23 +25,23 @@ public class TestaRelogio {
         // InÃ­cio da partida
         partida.iniciarPartida();
 
-        // Loop para permitir que os jogadores faï¿½am suas jogadas
+        // Loop para permitir que os jogadores façam suas jogadas
         while (!partida.isPartidaEncerrada()) {
         	
             if(partida.getNumeroJogadas() == 0) System.out.println("Digite 'jogar' para fazer a primeira jogada ou 'parar' para encerrar seu tempo.");
             else {
-            	System.out.println("A partida estï¿½ rolando ï¿½ a vez do jogador: " + jogadorAtual);
+            	System.out.println("A partida está rolando é a vez do jogador: " + jogadorAtual);
             }
             String comando = sc.nextLine();
 
             if (comando.equals("jogar")) {          	           	
             	if (jogadorAtual == 1) {
                 	if(partida.getNumeroJogadas() == 0) relogio.iniciarTempoJogador1();
-					jogador1.realizarJogada(relogio, partida);
+					jogador1.realizarJogada();
             	}
             	else {
             		if(partida.getNumeroJogadas() == 1) relogio.iniciarTempoJogador2();
-            		jogador2.realizarJogada(relogio, partida);		
+            		jogador2.realizarJogada();		
 				}
             }
             else if(comando.equals("parar")) {

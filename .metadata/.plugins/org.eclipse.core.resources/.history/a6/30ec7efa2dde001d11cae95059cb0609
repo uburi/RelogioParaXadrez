@@ -41,7 +41,7 @@ public class TestaRelogio {
             	}
             	else {
             		if(partida.getNumeroJogadas() == 1) relogio.iniciarTempoJogador2();
-            		jogador2.realizarJogada(relogio, partida);		
+            		jogador2.realizarJogada(relogio);		
 				}
             }
             else if(comando.equals("parar")) {
