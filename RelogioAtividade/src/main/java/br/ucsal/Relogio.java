@@ -12,17 +12,21 @@ public class Relogio {
         this.tempoMaximo = tempoMaximo;
         this.jogador1 = new ContadorTempo(tempoMaximo);
         this.jogador2 = new ContadorTempo(tempoMaximo);
-        this.threadJogador1 = new Thread(this.jogador1);
-        this.threadJogador2 = new Thread(this.jogador2);
     }
     
     public void iniciarTempoJogador1() {
-        jogador1.iniciarTempo();
-        threadJogador1.start();
+        this.threadJogador1 = new Thread(this.jogador1);
+        jogador1.iniciarTempo();   
+        if (!threadJogador1.isAlive()) {
+        	threadJogador1.start();
+        }
     }
     public void iniciarTempoJogador2() {
+        this.threadJogador2 = new Thread(this.jogador2);
         jogador2.iniciarTempo();
-        threadJogador2.start();
+        if (!threadJogador2.isAlive()) {
+        	threadJogador2.start();
+        }
     }
     public void pausarTempoJogador1() {
         jogador1.pausarTempo();

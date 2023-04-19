@@ -5,10 +5,9 @@ import java.util.Scanner;
 public class TestaRelogio {
 
 	public static void main(String[] args) {
-        @SuppressWarnings("resource")
 		Scanner sc = new Scanner(System.in);
         int jogadorAtual = 1;
-
+        
         System.out.println("Bem-vindo ao jogo de xadrez!");
 
         // Criação dos jogadores
@@ -16,7 +15,7 @@ public class TestaRelogio {
         Jogador jogador2 = new Jogador("Maria", 'V');
 
         // Criação do relógio
-        Relogio relogio = new Relogio(60);
+        Relogio relogio = new Relogio(150);
 
         // Criação da partida
         Partida partida = new Partida(jogador1, jogador2, relogio);
@@ -30,35 +29,41 @@ public class TestaRelogio {
         
         if(partida.getNumeroJogadas() == 0) System.out.println("Digite 'jogar' para fazer a primeira jogada e 'parar' para encerrar seu tempo.");
         String comando = sc.nextLine();
-        while (!partida.isPartidaEncerrada()) {
-        	        
-            System.out.println("A partida est� rolando � a vez do jogador: " + jogadorAtual);
-            
-            
+        System.out.println("A partida est� rolando � a vez do jogador: " + jogadorAtual);
+        AguardaInput inputListener = new AguardaInput();
+        Thread inputThread = new Thread(inputListener);
+        if (!inputThread.isAlive()) {
+        	inputThread.start();
+        }
+        while (!partida.isPartidaEncerrada()) {      
                   
             if (comando.equals("jogar")) {          	           	
             	if (jogadorAtual == 1) {
-                	if(partida.getNumeroJogadas() == 0) relogio.iniciarTempoJogador1();
+            		if(partida.getNumeroJogadas() % 3 == 0) relogio.iniciarTempoJogador1();
 					jogador1.realizarJogada(relogio, partida);
-					if (sc.hasNext()) {
-		                String input = sc.nextLine();
-		                if (input.equals("parar")) {
-		                	if(partida.getNumeroJogadas() == 1) relogio.iniciarTempoJogador2();
+					 String input1 = inputListener.getLastInput();
+					if (!input1.isEmpty()) {
+		                if (input1.equals("parar")) {
+		                	 System.out.println("Tempo gasto por " + jogador1.getNome() + ": " + (relogio.getTempoMaximo() - relogio.getTempoRestanteJogador1()) + " segundos.");
+		                     System.out.println("Tempo gasto por " + jogador2.getNome() + ": " + (relogio.getTempoMaximo() - relogio.getTempoRestanteJogador2()) + " segundos.");
 							relogio.pausarTempoJogador1();
 							jogadorAtual = 2;
+		                	relogio.iniciarTempoJogador2();
 		            		jogador2.realizarJogada(relogio, partida);	
 		                } 
 		            }
             	}
             	else {
-            		if(partida.getNumeroJogadas() == 1) relogio.iniciarTempoJogador2();
+            		if(partida.getNumeroJogadas() % 2 == 0) relogio.iniciarTempoJogador2();
             		jogador2.realizarJogada(relogio, partida);	
-            		if (sc.hasNext()) {
-		                String input = sc.nextLine();
-		                if (input.equals("parar")) {
-		                	if(partida.getNumeroJogadas() == 0) relogio.iniciarTempoJogador1();
+            		String input2 = inputListener.getLastInput();
+					if (!input2.isEmpty()) {
+		                if (input2.equals("parar")) {
+		                	System.out.println("Tempo gasto por " + jogador1.getNome() + ": " + (relogio.getTempoMaximo() - relogio.getTempoRestanteJogador1()) + " segundos.");
+		                    System.out.println("Tempo gasto por " + jogador2.getNome() + ": " + (relogio.getTempoMaximo() - relogio.getTempoRestanteJogador2()) + " segundos.");
 		                	relogio.pausarTempoJogador2();		
 		            		jogadorAtual = 1;
+		                	relogio.iniciarTempoJogador1();
 							jogador1.realizarJogada(relogio, partida);
 		                } 
 		            }
