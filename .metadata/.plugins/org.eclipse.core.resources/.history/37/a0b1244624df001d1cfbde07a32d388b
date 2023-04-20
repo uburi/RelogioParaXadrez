@@ -51,7 +51,7 @@ public class TestaRelogio {
 							System.out.println("Tempo gasto por " + jogador1.getNome() + ": " + (relogio.getTempoMaximo() - relogio.getTempoRestanteJogador1()) + " segundos.");
 					        System.out.println("Tempo gasto por " + jogador2.getNome() + ": " + (relogio.getTempoMaximo() - relogio.getTempoRestanteJogador2()) + " segundos.");
 							jogadorAtual = 2;
-					    	System.out.println("A partida está rolando é a vez do jogador: " + jogadorAtual);
+					    	System.out.println("A partida est� rolando � a vez do jogador: " + jogadorAtual);
 	                		partida.setNumeroJogadas(partida.getNumeroJogadas() + 1);;
 		            		jogador2.realizarJogada(relogio, partida);	
 		                } 
@@ -72,7 +72,7 @@ public class TestaRelogio {
 		                	System.out.println("Tempo gasto por " + jogador1.getNome() + ": " + (relogio.getTempoMaximo() - relogio.getTempoRestanteJogador1()) + " segundos.");
 		                    System.out.println("Tempo gasto por " + jogador2.getNome() + ": " + (relogio.getTempoMaximo() - relogio.getTempoRestanteJogador2()) + " segundos.");
 		            		jogadorAtual = 1;
-		                	System.out.println("A partida está rolando é a vez do jogador: " + jogadorAtual);
+		                	System.out.println("A partida est� rolando � a vez do jogador: " + jogadorAtual);
 	                		partida.setNumeroJogadas(partida.getNumeroJogadas() + 1);;
 							jogador1.realizarJogada(relogio, partida);
 		                } 
