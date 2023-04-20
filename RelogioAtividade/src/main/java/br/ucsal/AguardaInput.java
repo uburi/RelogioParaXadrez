@@ -1,0 +1,27 @@
+package br.ucsal;
+import java.util.Scanner;
+
+public class AguardaInput implements Runnable{
+
+	private Scanner scanner;
+    private String lastInput;
+
+    public AguardaInput() {
+        scanner = new Scanner(System.in);
+        lastInput = "";
+    }
+
+    public void run() {
+        while(true) {
+            String input = scanner.nextLine();
+            lastInput = input;
+        }
+    }
+
+    public String getLastInput() {
+        String input = lastInput;
+        lastInput = "";
+        return input;
+    }
+
+}

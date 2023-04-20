@@ -26,8 +26,6 @@ public class Jogador {
         if (relogio.getTempoRestanteJogador1() <= 0 || relogio.getTempoRestanteJogador2() <= 0) {
             partida.encerrarPartida();
         }
-        numeroJogadas = getNumeroJogadas() + 1;
-        partida.setNumeroJogadas(numeroJogadas);
     }
 
 	public int getNumeroJogadas() {

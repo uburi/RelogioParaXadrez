@@ -26,39 +26,54 @@ public class TestaRelogio {
 
         // Loop para permitir que os jogadores fa�am suas jogadas
         
-        
+
         
         if(partida.getNumeroJogadas() == 0) System.out.println("Digite 'jogar' para fazer a primeira jogada e 'parar' para encerrar seu tempo.");
         String comando = sc.nextLine();
+        AguardaInput inputListener = new AguardaInput();
+        Thread inputThread = new Thread(inputListener);
+        if (!inputThread.isAlive()) inputThread.start();
+        
         while (!partida.isPartidaEncerrada()) {
-        	        
-            System.out.println("A partida est� rolando � a vez do jogador: " + jogadorAtual);
-            
-            
-                  
+        
             if (comando.equals("jogar")) {          	           	
             	if (jogadorAtual == 1) {
-                	if(partida.getNumeroJogadas() == 0) relogio.iniciarTempoJogador1();
+                	if(partida.getNumeroJogadas() == 0) {
+                		relogio.iniciarTempoJogador1();
+                		partida.setNumeroJogadas(partida.getNumeroJogadas() + 1);;
+                	}
 					jogador1.realizarJogada(relogio, partida);
-					if (sc.hasNext()) {
-		                String input = sc.nextLine();
-		                if (input.equals("parar")) {
-		                	if(partida.getNumeroJogadas() == 1) relogio.iniciarTempoJogador2();
+					String input1 = inputListener.getLastInput();
+					if (!input1.isEmpty()) {
+		                if (input1.equals("parar")) {
 							relogio.pausarTempoJogador1();
+		                	relogio.iniciarTempoJogador2();
+							System.out.println("Tempo gasto por " + jogador1.getNome() + ": " + (relogio.getTempoMaximo() - relogio.getTempoRestanteJogador1()) + " segundos.");
+					        System.out.println("Tempo gasto por " + jogador2.getNome() + ": " + (relogio.getTempoMaximo() - relogio.getTempoRestanteJogador2()) + " segundos.");
 							jogadorAtual = 2;
+					    	System.out.println("A partida est� rolando � a vez do jogador: " + jogadorAtual);
+	                		partida.setNumeroJogadas(partida.getNumeroJogadas() + 1);;
 		            		jogador2.realizarJogada(relogio, partida);	
 		                } 
 		            }
             	}
             	else {
-            		if(partida.getNumeroJogadas() == 1) relogio.iniciarTempoJogador2();
+            		if(partida.getNumeroJogadas() == 1) {
+            			relogio.iniciarTempoJogador2();
+                		partida.setNumeroJogadas(partida.getNumeroJogadas() + 1);;
+
+            		}
             		jogador2.realizarJogada(relogio, partida);	
-            		if (sc.hasNext()) {
-		                String input = sc.nextLine();
-		                if (input.equals("parar")) {
-		                	if(partida.getNumeroJogadas() == 0) relogio.iniciarTempoJogador1();
-		                	relogio.pausarTempoJogador2();		
+            		String input1 = inputListener.getLastInput();
+					if (!input1.isEmpty()) {
+		                if (input1.equals("parar")) {
+		                	relogio.pausarTempoJogador2();
+		                	relogio.iniciarTempoJogador1();
+		                	System.out.println("Tempo gasto por " + jogador1.getNome() + ": " + (relogio.getTempoMaximo() - relogio.getTempoRestanteJogador1()) + " segundos.");
+		                    System.out.println("Tempo gasto por " + jogador2.getNome() + ": " + (relogio.getTempoMaximo() - relogio.getTempoRestanteJogador2()) + " segundos.");
 		            		jogadorAtual = 1;
+		                	System.out.println("A partida est� rolando � a vez do jogador: " + jogadorAtual);
+	                		partida.setNumeroJogadas(partida.getNumeroJogadas() + 1);;
 							jogador1.realizarJogada(relogio, partida);
 		                } 
 		            }

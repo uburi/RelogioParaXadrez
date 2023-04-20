@@ -30,6 +30,10 @@ public class ContadorTempo implements Runnable {
     public int getTempoRestante() {
         return tempoRestante;
     }
+    public void despausarTempo() {
+        this.pausado = false;
+
+    }
     
     public boolean isPausado() {
         return pausado;
@@ -46,7 +50,6 @@ public class ContadorTempo implements Runnable {
                     e.printStackTrace();
                 }
             }
-           
         }
     }
 	
