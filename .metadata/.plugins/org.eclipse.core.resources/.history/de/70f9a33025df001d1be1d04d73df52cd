@@ -16,14 +16,17 @@ public class Relogio {
     
     public void iniciarTempoJogador1() {
         this.threadJogador1 = new Thread(this.jogador1);
-        jogador1.iniciarTempo();
-        if(!threadJogador1.isAlive())threadJogador1.start();
-
+        jogador1.iniciarTempo();   
+        if (!threadJogador1.isAlive()) {
+        	threadJogador1.start();
+        }
     }
     public void iniciarTempoJogador2() {
         this.threadJogador2 = new Thread(this.jogador2);
         jogador2.iniciarTempo();
-        if(!threadJogador2.isAlive())threadJogador2.start();
+        if (!threadJogador2.isAlive()) {
+        	threadJogador2.start();
+        }
     }
     public void pausarTempoJogador1() {
         jogador1.pausarTempo();
