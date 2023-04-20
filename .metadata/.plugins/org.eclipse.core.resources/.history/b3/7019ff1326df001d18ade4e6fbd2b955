@@ -61,7 +61,8 @@ public class TestaRelogio {
             	else {
             		if(partida.getNumeroJogadas() == 1) {
             			relogio.iniciarTempoJogador2();
-                		partida.setNumeroJogadas(partida.getNumeroJogadas() + 1);;				    	
+                		partida.setNumeroJogadas(partida.getNumeroJogadas() + 1);;
+				    	System.out.println("A partida está rolando é a vez do jogador: " + jogadorAtual);
             		}
             		jogador2.realizarJogada(relogio, partida);	
             		String input1 = inputListener.getLastInput();

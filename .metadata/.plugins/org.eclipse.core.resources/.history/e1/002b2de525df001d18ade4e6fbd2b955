@@ -41,7 +41,6 @@ public class TestaRelogio {
                 	if(partida.getNumeroJogadas() == 0) {
                 		relogio.iniciarTempoJogador1();
                 		partida.setNumeroJogadas(partida.getNumeroJogadas() + 1);;
-				    	System.out.println("A partida está rolando é a vez do jogador: " + jogadorAtual);
                 	}
 					jogador1.realizarJogada(relogio, partida);
 					String input1 = inputListener.getLastInput();
@@ -61,17 +60,18 @@ public class TestaRelogio {
             	else {
             		if(partida.getNumeroJogadas() == 1) {
             			relogio.iniciarTempoJogador2();
-                		partida.setNumeroJogadas(partida.getNumeroJogadas() + 1);;				    	
+                		partida.setNumeroJogadas(partida.getNumeroJogadas() + 1);;
+
             		}
             		jogador2.realizarJogada(relogio, partida);	
             		String input1 = inputListener.getLastInput();
 					if (!input1.isEmpty()) {
 		                if (input1.equals("parar")) {
 		                	relogio.pausarTempoJogador2();
+		                	relogio.iniciarTempoJogador1();
 		                	System.out.println("Tempo gasto por " + jogador1.getNome() + ": " + (relogio.getTempoMaximo() - relogio.getTempoRestanteJogador1()) + " segundos.");
 		                    System.out.println("Tempo gasto por " + jogador2.getNome() + ": " + (relogio.getTempoMaximo() - relogio.getTempoRestanteJogador2()) + " segundos.");
-		                	relogio.iniciarTempoJogador1();
-		                    jogadorAtual = 1;
+		            		jogadorAtual = 1;
 		                	System.out.println("A partida está rolando é a vez do jogador: " + jogadorAtual);
 	                		partida.setNumeroJogadas(partida.getNumeroJogadas() + 1);;
 							jogador1.realizarJogada(relogio, partida);
