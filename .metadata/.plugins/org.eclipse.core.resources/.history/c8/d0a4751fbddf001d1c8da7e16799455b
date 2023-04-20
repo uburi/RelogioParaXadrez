@@ -10,7 +10,8 @@ public class Partida {
     private LocalDateTime horaInicio;
     private LocalDateTime horaFim;
     private boolean partidaEncerrada;
-
+    private boolean vezJogador1 = true;
+    private Jogador atual;
 
 	public Partida(Jogador jogador1, Jogador jogador2, Relogio relogio) {
 		this.jogador1 = jogador1;
